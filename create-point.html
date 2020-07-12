@@ -22,7 +22,7 @@
         <div class="content">
             <header> 
                 <img src="/assets/logo.svg" alt="">
-                <a href="#">
+                <a href="/">
                     <span></span>
                     Voltar para home
                 </a>
@@ -39,32 +39,32 @@
 
                     <div class="field">
                         <label for="name">Nome da entidade</label>
-                        <input type="text" name="name">
+                        <input type="text" name="name" required>
                     </div>
 
                     <div class="field-group">
                         <div class="field">
                             <label for="eddress">Endereço</label>
-                            <input type="text" name="eddress">
+                            <input type="text" name="eddress" required> 
                         </div>
                         <div class="field">
                             <label for="eddress2">Número/Complemento</label>
-                            <input type="text" name="eddress2">
+                            <input type="text" name="eddress2" required>
                         </div>
                     </div>
 
                     <div class="field-group">
                         <div class="field">
                             <label for="state">Estado</label>
-                            <select name = "uf">
+                            <select name = "uf" required>
                                 <option value="">Selecione o Estado</option>
                             </select>
 
-                            <input type="hidden" name="state">
+                            <input type="hidden" name="state" required>
                         </div>
                         <div class="field">
                             <label for="city">Cidade</label>
-                            <select name = "city" id="" disabled>
+                            <select name = "city" id="" disabled required>
                                 <option value="">Selecione a Cidade</option>
                             </select>
                         </div>
@@ -72,7 +72,49 @@
 
                 </fieldset>
 
-                <button type="submit">Cadastrar ponoto de coleta</button>
+                <fieldset>
+                    <legend>
+                        <h2>Itens de coleta</h2>
+                    </legend>
+
+                    <div class = "items-grid">
+                        <li data-id="1">
+                            <img src="assets/lampadas.svg" alt="lampadas">
+                            <span>Lampadas</span>
+                        </li>
+
+                        <li data-id="2">
+                            <img src="assets/baterias.svg" alt="Baterias">
+                            <span>Pilhas e Baterias</span>
+                        </li>
+
+                        <li data-id="3">
+                            <img src="assets/papeis-papelao.svg" alt="papeis-papelao">
+                            <span>Papéis e Papelão</span>
+                        </li>
+
+                        <li data-id="4">
+                            <img src="assets/eletronicos.svg" alt="eletronicos">
+                            <span>Resíduas Eletrônicos</span>
+                        </li>
+
+                        <li data-id="5">
+                            <img src="assets/organicos.svg" alt="organicos">
+                            <span>Resíduas Orgânicos</span>
+                        </li>
+
+                        <li data-id="6">
+                            <img src="assets/oleo.svg" alt="oleo">
+                            <span>Óleo de Cozinha</span>
+                        </li>
+                    </div>
+
+                    <input type="hidden" name="items">
+
+                </fieldset>
+
+
+                <button type="submit">Cadastrar ponto de coleta</button>
 
             </form>
 

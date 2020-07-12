@@ -25,11 +25,15 @@ function getCities(event){
 
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
 
+    citySelect.innerHTML = "<option value>Selecione a Cidade</option>"
+    citySelect.disabled = true;
+
     fetch(url)
     .then( res => res.json() )
     .then( cities => {
+       
         for(const city of cities){
-            citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
+            citySelect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`
         }
 
         citySelect.disabled = false;
@@ -40,3 +44,54 @@ function getCities(event){
 document
     .querySelector("select[name=uf]")
     .addEventListener("change", getCities)
+
+// Itens de coleta
+// pegar todos os li´s
+
+const itemsToCollect = document.querySelectorAll(".items-grid li");
+
+for( const item of itemsToCollect ){
+    item.addEventListener("click", handleSelectedItem)
+}
+
+const collectedItems=  document.querySelector("input[name=items]")
+
+let selectedItems  = []
+
+function handleSelectedItem(event) {
+    const itemLi = event.target
+
+    // adicionar ou remover uma classe com javascript
+    itemLi.classList.toggle("selected")
+
+    // pegando o id dos al no form 
+    const itemId = itemLi.dataset.id
+
+
+    // verificar se existem items selecionados, se sim
+    // pegar os items selecionados
+
+    const alreadySelected = selectedItems.findIndex( item => {
+        return item == itemId // isso será treu ou false
+    })
+
+    // se já tiver selecionado, tirar da coleção
+    if(alreadySelected != -1){
+        // tirar da seleção
+            const filteredItems = selectedItems.filter( item => {
+                return item != itemId // retorna verdadeiro ou falso, se for falso, filtra o elemento da lista
+            })
+
+            selectedItems = filteredItems
+            console.log(selectedItems)
+    }else{
+        // se nao estiver selecionado 
+        // adicionar à seleção
+        selectedItems.push(itemId)
+    }
+
+    //atualizar o campo escondido com os itens selecionados
+    collectedItems.value = selectedItems
+    //sd
+
+}
